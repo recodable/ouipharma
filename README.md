@@ -27,16 +27,7 @@ This is going to set up a progreSQL container and a Ruby container for our app
 
 ### Set up development database
 
-We make sure that database is created and the schema is set
-
-⚠️: might need to check the container name depending of your setup (to check the containers' name, run: `docker ps`)
-```
-docker exec -it ouipharama_web bin/rails db:create
-docker exec -it ouipharama_web bin/rails db:schema:load
-docker exec -it ouipharma_web bin/rails db:seed # optional
-```
-
-Then update your RoR `config/database.yml`:
+First, update your RoR `config/database.yml`:
 
 ```
 local: &local
@@ -62,6 +53,16 @@ development:
 
 # ...
 ```
+
+Then we create set up the database
+
+⚠️: might need to check the container name depending of your setup (to check the containers' name, run: `docker ps`)
+```
+docker exec -it ouipharama_web bin/rails db:create
+docker exec -it ouipharama_web bin/rails db:schema:load
+docker exec -it ouipharma_web bin/rails db:seed # optional
+```
+
 
 ## Additional info
 
