@@ -31,8 +31,36 @@ We make sure that database is created and the schema is set
 
 ⚠️: might need to check the container name depending of your setup (to check the containers' name, run: `docker ps`)
 ```
-docker exec -it ouipharama_web_1 bin/rails db:create
-docker exec -it ouipharama_web_1 bin/rails db:schema:load
+docker exec -it ouipharama_web bin/rails db:create
+docker exec -it ouipharama_web bin/rails db:schema:load
+docker exec -it ouipharma_web bin/rails db:seed # optional
+```
+
+Then update your RoR `config/database.yml`:
+
+```
+local: &local
+  # TODO: change username
+  username: postgres
+
+  # TODO: change password
+  password: password
+
+  # TODO: point to db host, this is valid as docker-compose manage the local network and point `db` to our postgresql container
+  host: db
+
+  # The TCP port the server listens on. Defaults to 5432.
+  # If your server runs on a different port number, change accordingly.
+  port: 5432
+
+  # ...
+  
+development:
+  <<: *default
+  <<: *local
+  database: ouipharma_development
+
+# ...
 ```
 
 ## Additional info
@@ -42,5 +70,5 @@ docker exec -it ouipharama_web_1 bin/rails db:schema:load
 ⚠️: might need to check the container name depending of your setup (to check the containers' name, run: `docker ps`)
 
 ```
-docker exec -it ouipharama_web_1 bin/rails
+docker exec -it ouipharama_web bin/rails
 ```
