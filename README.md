@@ -4,13 +4,13 @@
 
 ### Clone the workspace repository
 
-```
+```bash
 git clone https://github.com/recodable/ouipharma.git
 ```
 
 ### Clone the codebase repository as code/
 
-```
+```bash
 cd ouipharma # go into the workspace that you previously cloned
 git clone git@github.com:Ouibiz/ouipharma.git code # clone the codebase inside the workspace directory as code/
 ```
@@ -19,7 +19,7 @@ git clone git@github.com:Ouibiz/ouipharma.git code # clone the codebase inside t
 
 Inside the workspace
 
-```
+```bash
 docker-compose up
 ```
 
@@ -29,7 +29,7 @@ This is going to set up a progreSQL container and a Ruby container for our app
 
 First, update your RoR `config/database.yml`:
 
-```
+```yaml
 local: &local
   # TODO: change username
   username: postgres
@@ -57,7 +57,7 @@ development:
 Then we create set up the database
 
 ⚠️: might need to check the container name depending of your setup (to check the containers' name, run: `docker ps`)
-```
+```bash
 docker exec -it ouipharama_web bin/rails db:create
 docker exec -it ouipharama_web bin/rails db:schema:load
 docker exec -it ouipharma_web bin/rails db:seed # optional
@@ -70,6 +70,6 @@ docker exec -it ouipharma_web bin/rails db:seed # optional
 
 ⚠️: might need to check the container name depending of your setup (to check the containers' name, run: `docker ps`)
 
-```
+```bash
 docker exec -it ouipharama_web bin/rails
 ```
