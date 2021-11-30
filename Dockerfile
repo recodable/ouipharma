@@ -11,11 +11,13 @@ RUN apt-get update -qq && apt-get install -y \
   openssl \ 
   libssl-dev 
 RUN npm install -g yarn
+RUN gem install mini_portile2
 
 WORKDIR /app
 COPY ./code /app
-RUN bundle install
+RUN bundler install
 RUN yarn
+RUN rails webpacker:install
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
