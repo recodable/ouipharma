@@ -9,7 +9,8 @@ RUN apt-get update -qq && apt-get install -y \
   software-properties-common \ 
   pkg-config \ 
   openssl \ 
-  libssl-dev 
+  libssl-dev \
+  python2 
 RUN npm install -g yarn
 RUN gem install mini_portile2
 
